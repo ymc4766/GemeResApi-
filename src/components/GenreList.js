@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GlopalApi from "../Services/GlopalApi";
 // import { getGenrList } from "../services/GlopalApi";
 
-const GenreList = () => {
+const GenreList = ({ setGenresId }) => {
   const [genList, setGenList] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const getGenreList = () => {
@@ -22,7 +22,10 @@ const GenreList = () => {
       <div>
         {genList.map((item, index) => (
           <div
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              setActiveIndex(index);
+              setGenresId(item.id);
+            }}
             className={`flex space-x-2 items-center mb-2 cursor-pointer hover:bg-gray-300
            dark:hover:bg-violet-400 py-3 p-2 group rounded-lg ${
              activeIndex == index ? "bg-gray-300 dark:bg-violet-400" : ""

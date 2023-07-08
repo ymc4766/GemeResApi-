@@ -7,7 +7,7 @@ const GamesByGenres = ({ gameList }) => {
       <h1 className="text-4xl font-bold mt-2 mb-2">popular Games</h1>
       <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-2">
         {gameList.map((item) => (
-          <div>
+          <div className="bg-violet-400 p-3 rounded-xl ">
             <img
               src={item.background_image}
               alt={item.name}

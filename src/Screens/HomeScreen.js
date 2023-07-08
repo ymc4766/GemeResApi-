@@ -13,26 +13,27 @@ const HomeScreen = () => {
   const getAllGame = () => {
     GlopalApi.getAllGames.then((res) => {
       setGames(res.data.results);
-      setGameListByGenres(res.data.results);
-      console.log("games", res.data.results);
+      // setGameListByGenres(res.data.results);
+      // console.log("games", res.data.results);
     });
   };
 
   const getGameLsitByGenres = (id) => {
-    GlopalApi.getGameListBgGenreId(4).then((res) => {
-      console.log(res.data.results);
+    GlopalApi.getGameListBgGenreId(id).then((res) => {
+      console.log("game list by genre id", res.data.results);
+      setGameListByGenres(res.data.results);
     });
   };
 
   useEffect(() => {
     getAllGame();
-    getGameLsitByGenres();
+    getGameLsitByGenres(4);
   }, []);
 
   return (
     <div className="grid grid-cols-4">
       <div className="hidden md:block border-r-[2px] border-gray-400 m-3">
-        <GenreList />
+        <GenreList setGenresId={(genresId) => getGameLsitByGenres(genresId)} />
       </div>
       <div className="col-span-4 md:col-span-3">
         {games.length > 0 && gameListByGenres.length > 0 ? (
